@@ -7,13 +7,13 @@
    [ring.middleware.content-type :refer [wrap-content-type]]
    [ring.middleware.webjars :refer [wrap-webjars]]
    [chulsooboardv2.env :refer [defaults]]
-   [mount.core :as mount]))
+   [mount.core :refer [defstate]]))
 
-(mount/defstate init-app
+(defstate init-app
   :start ((or (:init defaults) (fn [])))
   :stop  ((or (:stop defaults) (fn []))))
 
-(mount/defstate app-routes
+(defstate app-routes
   :start
   ;; for "/"
   (ring/ring-handler
