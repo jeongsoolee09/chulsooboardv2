@@ -20,3 +20,5 @@ profiles.clj
 .lsp/
 *.db
 .DS_Store
+
+target/
