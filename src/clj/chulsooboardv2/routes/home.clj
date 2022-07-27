@@ -10,8 +10,10 @@
 (def home-page
   (response/ok
    (add-base-template
-    [:div {:class "content"}
-     :TODO])))
+    [:input {:type "text"
+             :class "search song"
+             :placeholder "Input a song title..."}
+     :button {:class "submit songsubmit"}])))
 
 (def about-page
   (response/ok
@@ -22,8 +24,6 @@
   (add-base-template
    (list (doctype :html5)
          [])))
-
-;; TODO: wrap them in ring responses!!!
 
 (defn home-routes []
   ["" {:middleware [middleware/wrap-csrf

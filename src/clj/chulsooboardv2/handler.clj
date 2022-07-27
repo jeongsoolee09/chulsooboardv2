@@ -1,7 +1,7 @@
 (ns chulsooboardv2.handler
   (:require
    [chulsooboardv2.middleware :as middleware]
-   [chulsooboardv2.layout :refer [error-page]]
+   [chulsooboardv2.layouts.core :refer [error-page]]
    [chulsooboardv2.routes.home :refer [home-routes]]
    [reitit.ring :as ring]
    [ring.middleware.content-type :refer [wrap-content-type]]
