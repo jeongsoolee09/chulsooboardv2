@@ -4,22 +4,20 @@
    [hiccup.page :refer [doctype]]
    [compojure.core :refer [defroutes context GET POST]]
    [ring.util.http-response :as response]
-   [ring.middleware.cors :refer [wrap-cors]]))
+   [ring.mock.request :as mock]))
 
 (defn home-page [_]
-  (wrap-cors
-   (response/ok
-    (add-base-template
-     [:input {:type "text"
-              :class "search song"
-              :placeholder "Input a song title..."}
-      :button {:class "submit songsubmit"}]))))
+  (response/ok
+   (add-base-template
+    [:input {:type "text"
+             :class "search song"
+             :placeholder "Input a song title..."}
+     :button {:class "submit songsubmit"}])))
 
 (defn about-page [_]
-  (wrap-cors
-   (response/ok
-    (add-base-template
-     [:img {:src "/img/warning_clojure.png"}]))))
+  (response/ok
+   (add-base-template
+    [:img {:src "/img/warning_clojure.png"}])))
 
 (defn error-page [_]
   (add-base-template
