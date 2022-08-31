@@ -50,6 +50,11 @@
           });
         })();"]]])))
 
+(defn wrap-as-html [handler]
+  (fn [request]
+    (let [response (handler request)]
+      (assoc-in response [:headers "Content-Type"] "text/html"))))
+
 (defn error-page                        ; DEPRECATED
   "error-details should be a map containing the following keys:
    :status - error status

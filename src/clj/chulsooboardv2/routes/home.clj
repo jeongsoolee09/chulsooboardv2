@@ -1,6 +1,6 @@
 (ns chulsooboardv2.routes.home
   (:require
-   [chulsooboardv2.layouts.core :refer [add-base-template]]
+   [chulsooboardv2.layouts.core :refer [add-base-template wrap-as-html]]
    [hiccup.page :refer [doctype]]
    [compojure.core :refer [defroutes context GET POST]]
    [ring.util.http-response :as response]
@@ -25,5 +25,5 @@
          [:div "ahahahahah"])))
 
 (defroutes home-routes
-  (GET "/" [] home-page)
-  (GET "/about" [] about-page))
+  (GET "/" [] (wrap-as-html home-page))
+  (GET "/about" [] (wrap-as-html about-page)))

@@ -15,4 +15,4 @@
 
 (defn -main []
   (run-jetty (wrap-cors
-               (wrap-reload app)) {:port 80}))
+               (wrap-reload app)) {:port 8888}))
