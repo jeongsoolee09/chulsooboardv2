@@ -9,10 +9,11 @@
 (defn home-page [_]
   (response/ok
    (add-base-template
-    [:input {:type "text"
-             :class "search song"
-             :placeholder "Input a song title..."}
-     :button {:class "submit songsubmit"}])))
+     (list [:input {:type "text"
+                    :class "search song"
+                    :placeholder "Input a song title..."}]
+           [:button {:class "submit songsubmit"}
+            "Submit!"]))))
 
 (defn about-page [_]
   (response/ok
