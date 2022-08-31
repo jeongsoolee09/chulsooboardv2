@@ -6,7 +6,6 @@
   :dependencies [[clojure.java-time "0.3.3"]
                  [org.postgresql/postgresql "42.4.0"]
                  [enlive "1.1.6"]
-                 [conman "0.9.3"]
                  [cprop "0.1.19"]
                  [com.github.seancorfield/honeysql "2.2.891"]
                  [com.github.seancorfield/next.jdbc "1.2.780"]
@@ -33,6 +32,8 @@
                  [ring-webjars "0.2.0"]
                  [ring/ring-core "1.9.5"]
                  [ring/ring-defaults "0.3.3"]
+                 [ring-cors "0.1.13"]
+                 [compojure "1.7.0"]
                  [selmer "1.12.50"]
                  [hiccup "1.0.5"]
                  [garden "1.3.10"]]
@@ -44,7 +45,9 @@
   :target-path "target/%s/"
   :main ^:skip-aot chulsooboardv2.core
 
-  :plugins [[lein-immutant "2.1.0"]]
+  :plugins [[lein-immutant "2.1.0"]
+            [lein-ring "0.12.6"]]
+  :ring {:handler chulsooboardv2.handler/app}
 
   :profiles
   {:uberjar {:omit-source true

@@ -50,8 +50,6 @@
 
   (def scrapped (scrape-upto-number 1))
 
-  (def song-maps user/song-maps)
-
   (defn insert-all-scrapped [scrapped]
     (doseq [song-maps scrapped
             song-map song-maps]

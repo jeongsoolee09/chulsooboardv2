@@ -1,32 +1,31 @@
 (ns chulsooboardv2.routes.home
   (:require
    [chulsooboardv2.layouts.core :refer [add-base-template]]
-   [chulsooboardv2.db.core :as db]      ; TODO: will be integrated later
-   [chulsooboardv2.middleware :as middleware]
    [hiccup.page :refer [doctype]]
-   [ring.util.http-response :as response]))
+   [compojure.core :refer [defroutes context GET POST]]
+   [ring.util.http-response :as response]
+   [ring.middleware.cors :refer [wrap-cors]]))
 
-;; We need to write some sample HTML first, and see what it looks like.
-(def home-page
-  (response/ok
-   (add-base-template
-    [:input {:type "text"
-             :class "search song"
-             :placeholder "Input a song title..."}
-     :button {:class "submit songsubmit"}])))
+(defn home-page [_]
+  (wrap-cors
+   (response/ok
+    (add-base-template
+     [:input {:type "text"
+              :class "search song"
+              :placeholder "Input a song title..."}
+      :button {:class "submit songsubmit"}]))))
 
-(def about-page
-  (response/ok
-   (add-base-template
-    [:img {:src "/img/warning_clojure.png"}])))
+(defn about-page [_]
+  (wrap-cors
+   (response/ok
+    (add-base-template
+     [:img {:src "/img/warning_clojure.png"}]))))
 
-(def error-page
+(defn error-page [_]
   (add-base-template
    (list (doctype :html5)
-         [])))
+         [:div "ahahahahah"])))
 
-(defn home-routes []
-  ["" {:middleware [middleware/wrap-csrf
-                    middleware/wrap-formats]}
-   ["/" {:get home-page}]
-   ["/about" {:get about-page}]])
+(defroutes home-routes
+  (GET "/" [] home-page)
+  (GET "/about" [] about-page))
